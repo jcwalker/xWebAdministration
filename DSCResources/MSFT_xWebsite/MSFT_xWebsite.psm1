@@ -1847,17 +1847,13 @@ function Set-LogCustomField
 
     foreach ($customField in $LogCustomField)
     {
-        $filterString = "/system.applicationHost/sites/site[@name='{0}']/logFile/customFields/add[@logFieldName='{1}']" -f $Site, $customField.LogFieldName
-
         $addHashTable = @{
             logFieldName = $customField.LogFieldName
             sourceName = $customField.SourceName
             sourceType = $customField.SourceType
         }
         
-        #New-ItemProperty "IIS:\Sites\$Name" -Name 'logfile.customFields.collection' -Value $addHashTable
-        Set-WebConfigurationProperty -PSPath 'MACHINE/WEBROOT/APPHOST' -Filter "system.applicationHost/sites/site[@name='$Site']/logFile/customFields" -Name "." -Value $addHashTable 
-        
+        Set-WebConfigurationProperty -PSPath 'MACHINE/WEBROOT/APPHOST' -Filter "system.applicationHost/sites/site[@name='$Site']/logFile/customFields" -Name "." -Value $addHashTable        
     }
 }
 
