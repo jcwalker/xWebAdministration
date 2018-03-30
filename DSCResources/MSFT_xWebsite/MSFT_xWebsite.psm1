@@ -1855,7 +1855,7 @@ function Set-LogCustomField
                 
         Set-WebConfigurationProperty -PSPath 'MACHINE/WEBROOT/APPHOST' -Filter "system.applicationHost/sites/site[@name='$Site']/logFile/customFields" -Name "." -Value $addHashTable
         
-        # The second Set-WebConfigurationProperty is to handle an edge case where logfile.customFields is not updated correctly.  Maybe be caused by a possible bug in the IIS provider
+        # The second Set-WebConfigurationProperty is to handle an edge case where logfile.customFields is not updated correctly.  May be caused by a possible bug in the IIS provider
         Set-WebConfigurationProperty -PSPath 'MACHINE/WEBROOT/APPHOST' -Filter "system.applicationHost/sites/site[@name='$Site']/logFile/customFields" -Name "." -Value $addHashTable     
     }
 }
